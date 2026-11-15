@@ -40,7 +40,7 @@ export const DSRRS_PRIVACY_POLICY_SECTIONS: PrivacyPolicySection[] = [
         title: 'Information about players in match reports',
         paragraphs: [
           'When a referee records a yellow or red card, the match report includes the player’s name, jersey number, position, and what happened. Some of these players may be under 18, because DSRRS officiates youth and high school matches.',
-          'Players do not have accounts and do not use the Service. Card details are visible only to the reporting referee and to DSRRS officers in the assigning, treasurer, report-review, and discipline roles. Clubs and coaches cannot see them. [TO CONFIRM: is True South or USA Rugby sent card reports for discipline? If so, name them here.]',
+          'Players do not have accounts and do not use the Service. Card details are visible only to the reporting referee and to DSRRS officers in the assigning, treasurer, report-review, and discipline roles. Clubs and coaches cannot see them. For discipline, We send each card report to the commissioner of the league the match was played in.',
         ],
       },
       {
@@ -96,14 +96,14 @@ export const DSRRS_PRIVACY_POLICY_SECTIONS: PrivacyPolicySection[] = [
     bullets: [
       'DSRRS members and officers, according to their role. For example, the member directory is visible within the society, and clubs see the crew for their matches only after the Match Official has confirmed the appointment.',
       'The companies that host and run the Service for Us: Google (Firebase sign-in, database, hosting, and security checks), Apple (Sign in with Apple), and Resend (email delivery). Each follows its own privacy policy.',
-      '[TO CONFIRM: any sharing with True South Rugby Union or USA Rugby, for example for referee certification, insurance, or discipline.]',
+      'League commissioners, who receive card reports from their league’s matches for discipline purposes',
       'Anyone else, but only where the law requires it or to protect someone’s safety',
     ],
   },
   {
     title: 'How Long We Keep Information',
     paragraphs: [
-      'We keep Your information while You are an active member or club contact, and for a reasonable time afterward for society records. Match and card reports are kept as season records. [TO CONFIRM: retention period, for example 3 seasons.]',
+      'We keep Your information while You are an active member or club contact, and for a reasonable time afterward for society records. Match and card reports are kept for 3 seasons, then deleted.',
       'You can ask Us to delete Your information at any time (see below).',
     ],
   },
@@ -123,7 +123,10 @@ export const DSRRS_PRIVACY_POLICY_SECTIONS: PrivacyPolicySection[] = [
   {
     title: "Children's Privacy",
     paragraphs: [
-      'Accounts are for adults (18 and over) only. We do not knowingly let anyone under 18 create an account. Information about minor players appears only in match reports, as described above. [TO CONFIRM: does DSRRS have any referees under 18? If so, this section needs parental consent wording.]',
+      'Some DSRRS referees are under 18. A referee aged 13 to 17 may have an account only with written consent from a parent or guardian, which DSRRS collects when the referee registers with the society.',
+      'We collect the same information from these referees as from adult referees, and use it only to schedule, appoint, and develop them. A parent or guardian can contact Us at any time to see, correct, or delete their child’s information, or to withdraw consent and close the account.',
+      'We do not allow anyone under 13 to use the Service. If We learn that a child under 13, or a minor without parental consent, has created an account, We will delete it.',
+      'Information about minor players appears only in match reports, as described above.',
     ],
   },
   {

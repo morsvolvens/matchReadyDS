@@ -31,6 +31,9 @@ The maintainer is the DSRRS Secretary, acting as volunteer technical admin. He i
 - **Payment model (pilot):** clubs pay referees directly. The Finance module is ledger-only or off. The app never moves money.
 - **Judicial module:** off for the pilot. Discipline belongs to True South.
 - **Assistant referees:** appointed only for heavyweight games, championship games, or recreational courses
+- **Report retention:** match and card reports are kept 3 seasons, then deleted (promised in the DSRRS privacy policy). The app has **no automatic purge** for reports, so this is a manual off-season task unless one is built.
+- **Card reports** go to the commissioner of the league the match was in. No data is shared with True South or USA Rugby.
+- **Under-18 referees:** likely some. The privacy policy allows ages 13–17 with written parent/guardian consent, collected by DSRRS at society registration. The app itself has **no age check or consent step**, so consent is tracked outside the app.
 
 ## Environments and safety rules
 
