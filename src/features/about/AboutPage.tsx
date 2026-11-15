@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { Title } from '@patternfly/react-core';
 import { PwaInstallCard } from '@/ui/PwaInstallCard';
+import { APP_NAME, IS_DSRRS } from '@/config/brand';
 
 const TOC = [
-  { id: 'about-why', label: 'Why MatchReadyTX exists' },
+  { id: 'about-why', label: `Why ${APP_NAME} exists` },
   { id: 'about-confirmation', label: 'A different approach to match confirmation' },
   { id: 'about-does', label: 'What the app does' },
   { id: 'about-roles', label: 'Roles in the app' },
@@ -52,7 +53,30 @@ export function AboutPage() {
   return (
     <div className="rs-stack rs-about">
       <header className="rs-about-hero">
-        <Title headingLevel="h1">About MatchReadyTX</Title>
+        <Title headingLevel="h1">About {APP_NAME}</Title>
+        {IS_DSRRS ? (
+          <>
+            <p>
+              {APP_NAME} is the Deep South Rugby Referee Society’s official
+              channel for referee requests and appointments. DSRRS is a
+              volunteer-led nonprofit serving Louisiana, Mississippi, Alabama,
+              and the Florida Panhandle, within USA Rugby and True South Rugby
+              Union.
+            </p>
+            <p>
+              It covers men’s and women’s club 15s and 7s, plus youth and high
+              school rugby. Clubs request referees and confirm fixtures here
+              instead of by email. Only referees appointed through the DSRRS
+              Assignments Officer are covered by society insurance.
+            </p>
+            <p>
+              {APP_NAME} is DSRRS’s own copy of MatchReadyTX, an open-source
+              app built for the Lonestar Group in Texas. DSRRS runs its own copy
+              and data.
+            </p>
+          </>
+        ) : (
+          <>
         <p>
           MatchReadyTX is a scheduling and match-management app for rugby
           referee organizations.
@@ -70,6 +94,8 @@ export function AboutPage() {
           began; another organization can use the same foundation and make it
           its own.
         </p>
+          </>
+        )}
       </header>
 
       <PwaInstallCard />
@@ -99,7 +125,7 @@ export function AboutPage() {
 
       <section id="about-why" className="rs-about-section">
         <Title headingLevel="h2" size="md">
-          Why MatchReadyTX exists
+          Why {APP_NAME} exists
         </Title>
         <p>
           Rugby organizations have developed many different ways to manage
@@ -114,7 +140,7 @@ export function AboutPage() {
           administrators who do not need another complicated system to learn.
         </p>
         <p className="rs-about-lead">
-          MatchReadyTX bridges the gap for modern UI with a familiar
+          {APP_NAME} bridges the gap for modern UI with a familiar
           spreadsheet.
         </p>
         <p>
@@ -140,7 +166,7 @@ export function AboutPage() {
           a referee can send four or five emails without receiving an answer.
         </p>
         <p className="rs-about-lead">
-          MatchReadyTX puts that responsibility back where it belongs: with the
+          {APP_NAME} puts that responsibility back where it belongs: with the
           teams playing the match.
         </p>
         <p>
@@ -158,7 +184,7 @@ export function AboutPage() {
 
       <section id="about-does" className="rs-about-section">
         <Title headingLevel="h2" size="md">
-          What MatchReadyTX does
+          What {APP_NAME} does
         </Title>
         <div className="rs-about-features">
           <article className="rs-about-feature">
@@ -211,8 +237,9 @@ export function AboutPage() {
             <p>
               Schedulers can view match fees and flight/lodging flags when
               assigning. Referees, team admins, and fans see kickoff, venue, and
-              crew visibility rules only — not pay rates. MatchReadyTX does not
-              collect or distribute payments.
+              crew visibility rules only — not pay rates. {APP_NAME} does not
+              collect or distribute payments
+              {IS_DSRRS ? '; clubs pay referees directly.' : '.'}
             </p>
           </article>
         </div>
@@ -242,9 +269,9 @@ export function AboutPage() {
           <article className="rs-about-feature">
             <h3 className="rs-about-feature__title">Scheduler</h3>
             <p>
-              The assigner’s control center: Queues, Schedule, and Org. Assign
-              crews, sync the Google Sheet, release schedules, and maintain fee
-              information.
+              The assigner’s control center: Schedule (with work queues and
+              crew defaults), Reports, and Upload. Assign crews, sync the Google
+              Sheet, release schedules, and maintain fee information.
             </p>
           </article>
           <article className="rs-about-feature">
@@ -277,6 +304,13 @@ export function AboutPage() {
               and USA Rugby National Championships. By day a product designer —
               MatchReadyTX is where officiating, assigning, and design met.
             </p>
+            {IS_DSRRS && (
+              <p>
+                {APP_NAME} is adapted from his open-source MatchReadyTX and run
+                by DSRRS. Questions about this copy go to the society, not to
+                Justin.
+              </p>
+            )}
           </div>
         </div>
       </section>

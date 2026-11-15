@@ -5,6 +5,11 @@
 export const APP_NAME =
   import.meta.env.VITE_APP_NAME?.trim() || 'MatchReadyTX';
 
+/** This deployment's org (VITE_DEFAULT_ORG_ID); picks society-specific copy. */
+export const DEPLOY_ORG_ID =
+  import.meta.env.VITE_DEFAULT_ORG_ID?.trim() || 'lonestar';
+export const IS_DSRRS = DEPLOY_ORG_ID === 'dsrrs';
+
 export const PUBLIC_CONTACT_EMAIL_DEFAULT = 'rabbitholeapps26@gmail.com';
 
 export const PUBLIC_CONTACT_EMAIL =

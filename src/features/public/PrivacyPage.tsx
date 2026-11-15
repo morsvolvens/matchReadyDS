@@ -9,12 +9,13 @@ import {
   DSRRS_PRIVACY_POLICY_SECTIONS,
 } from '@/features/public/privacyPolicyContent.dsrrs';
 
+import { IS_DSRRS } from '@/config/brand';
+
 // Society-specific policy, chosen by the deployment's org ID.
-const isDsrrs = import.meta.env.VITE_DEFAULT_ORG_ID?.trim() === 'dsrrs';
-const PRIVACY_POLICY_LAST_UPDATED = isDsrrs
+const PRIVACY_POLICY_LAST_UPDATED = IS_DSRRS
   ? DSRRS_PRIVACY_POLICY_LAST_UPDATED
   : UPSTREAM_LAST_UPDATED;
-const PRIVACY_POLICY_SECTIONS = isDsrrs
+const PRIVACY_POLICY_SECTIONS = IS_DSRRS
   ? DSRRS_PRIVACY_POLICY_SECTIONS
   : UPSTREAM_SECTIONS;
 import { PublicFooter } from '@/features/public/PublicFooter';
