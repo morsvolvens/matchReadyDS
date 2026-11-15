@@ -1,9 +1,22 @@
 import { Button } from '@patternfly/react-core';
 import { useNavigate } from 'react-router-dom';
 import {
-  PRIVACY_POLICY_LAST_UPDATED,
-  PRIVACY_POLICY_SECTIONS,
+  PRIVACY_POLICY_LAST_UPDATED as UPSTREAM_LAST_UPDATED,
+  PRIVACY_POLICY_SECTIONS as UPSTREAM_SECTIONS,
 } from '@/features/public/privacyPolicyContent';
+import {
+  DSRRS_PRIVACY_POLICY_LAST_UPDATED,
+  DSRRS_PRIVACY_POLICY_SECTIONS,
+} from '@/features/public/privacyPolicyContent.dsrrs';
+
+// Society-specific policy, chosen by the deployment's org ID.
+const isDsrrs = import.meta.env.VITE_DEFAULT_ORG_ID?.trim() === 'dsrrs';
+const PRIVACY_POLICY_LAST_UPDATED = isDsrrs
+  ? DSRRS_PRIVACY_POLICY_LAST_UPDATED
+  : UPSTREAM_LAST_UPDATED;
+const PRIVACY_POLICY_SECTIONS = isDsrrs
+  ? DSRRS_PRIVACY_POLICY_SECTIONS
+  : UPSTREAM_SECTIONS;
 import { PublicFooter } from '@/features/public/PublicFooter';
 import './public.css';
 
