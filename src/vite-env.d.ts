@@ -21,6 +21,8 @@ interface ImportMetaEnv {
   readonly VITE_RECAPTCHA_ENTERPRISE_SITE_KEY?: string;
   readonly VITE_APP_CHECK_DEBUG?: string;
   readonly VITE_APP_BUILD?: string;
+  readonly VITE_APP_NAME?: string;
+  readonly VITE_PUBLIC_CONTACT_EMAIL?: string;
 }
 
 interface ImportMeta {

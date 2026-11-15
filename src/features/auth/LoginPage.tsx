@@ -11,6 +11,7 @@ import {
 } from '@/features/auth/SocialSignInButtons';
 import { appBuildLabel } from '@/app/appBuild';
 import { PwaInstallCard } from '@/ui/PwaInstallCard';
+import { APP_NAME } from '@/config/brand';
 import { ThemeToggle } from '@/ui/ThemeToggle';
 import { BrandLogo } from '@/ui/BrandLogo';
 import { PublicFooter } from '@/features/public/PublicFooter';
@@ -27,10 +28,10 @@ function authErrorMessage(provider: 'Google' | 'Apple', err: unknown): string {
     return 'Sign-in was cancelled.';
   }
   if (message.includes('auth/popup-blocked')) {
-    return 'Pop-up blocked. Allow pop-ups for MatchReadyTX, or open this site in Safari or Chrome (not an in-app or private browser), then try again.';
+    return `Pop-up blocked. Allow pop-ups for ${APP_NAME}, or open this site in Safari or Chrome (not an in-app or private browser), then try again.`;
   }
   if (message.includes('missing initial state')) {
-    return 'Sign-in was interrupted by your browser. Open MatchReadyTX in Safari or Chrome, sign in, then return to your match.';
+    return `Sign-in was interrupted by your browser. Open ${APP_NAME} in Safari or Chrome, sign in, then return to your match.`;
   }
   if (
     message.includes('invalid_client') ||
@@ -137,9 +138,9 @@ export function LoginPage() {
           className="rs-signin__logo rs-public__logo"
           width={160}
           height={160}
-          alt="MatchReadyTX"
+          alt={APP_NAME}
         />
-        <h1 className="rs-public__lede">MatchReadyTX</h1>
+        <h1 className="rs-public__lede">{APP_NAME}</h1>
         <p className="rs-public__tagline">
           Scheduling and match management for rugby referee organizations
         </p>

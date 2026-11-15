@@ -6,6 +6,7 @@ import {
 import { ROLE_VIEW_LABELS, type RoleView } from '@/app/AppContext';
 import { appBuildLabel } from '@/app/appBuild';
 import { BrandLogo } from '@/ui/BrandLogo';
+import { APP_NAME } from '@/config/brand';
 import { ThemeToggle } from '@/ui/ThemeToggle';
 import { OfficialQuickLookPicker } from '@/features/scheduler/officialQuickLookContext';
 
@@ -47,7 +48,7 @@ export function TopAppBar({
           <span className="rs-brand-block">
             <span className="rs-brand-row">
               <BrandLogo width={32} height={32} />
-              <span className="rs-brand">MatchReadyTX</span>
+              <span className="rs-brand">{APP_NAME}</span>
               <ThemeToggle />
               {inDemoTree && (
                 <span

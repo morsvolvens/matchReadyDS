@@ -1,5 +1,6 @@
 import { Button } from '@patternfly/react-core';
 import { usePwaInstall } from '@/pwa/usePwaInstall';
+import { APP_NAME } from '@/config/brand';
 
 type PwaInstallCardProps = {
   /** Extra class on the outer card (e.g. login spacing). */
@@ -17,7 +18,7 @@ export function PwaInstallCard({ className }: PwaInstallCardProps) {
   return (
     <aside
       className={`rs-pwa-install${className ? ` ${className}` : ''}`}
-      aria-label="Install MatchReadyTX"
+      aria-label={`Install ${APP_NAME}`}
     >
       <img
         className="rs-pwa-install__icon"
@@ -28,7 +29,7 @@ export function PwaInstallCard({ className }: PwaInstallCardProps) {
         decoding="async"
       />
       <div className="rs-pwa-install__body">
-        <p className="rs-pwa-install__title">Install MatchReadyTX</p>
+        <p className="rs-pwa-install__title">Install {APP_NAME}</p>
         {mode === 'prompt' ? (
           <p className="rs-pwa-install__text">
             Add a desktop or home-screen shortcut for quicker access.
