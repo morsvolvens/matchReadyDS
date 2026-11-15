@@ -57,9 +57,28 @@ The maintainer is the DSRRS Secretary, acting as volunteer technical admin. He i
 - `docs/EMAIL.md`: Resend email setup
 - `docs/PRD.md`, `docs/IMPLEMENTATION_SPEC.md`: product and technical spec
 
-## Current status (Nov 2026)
+## Current status (Nov 15, 2026)
 
-- Repo cloned locally. Node.js installed.
-- Next: run the local demo (`npm install`, then `npm run dev`).
-- Then: create a test Firebase project, fill in `.env.local`, and deploy rules.
-- Then: connect a test Sheet and Functions.
+Work is on branch `dsrrs/rebrand` (not pushed; check whether `origin` is the society's repo or a colleague's before pushing).
+
+### Done
+- **Branding via env vars** (`src/config/brand.ts`, defaults keep upstream behavior): `VITE_APP_NAME=matchReadyDS`, `VITE_PUBLIC_CONTACT_EMAIL`, `VITE_BRAND_ICON_DIR=/brand/dsrrs` (seal logo + app icons in `public/brand/dsrrs/`). `IS_DSRRS` (from `VITE_DEFAULT_ORG_ID=dsrrs`) switches in DSRRS text for the privacy policy, About page and sign-in "about" section.
+- **Privacy policy:** DSRRS draft in `src/features/public/privacyPolicyContent.dsrrs.ts`, still marked "DRAFT: not yet adopted" pending Executive Committee approval.
+- **Test Firebase project `dsrrs-matchready-test`:** `.firebaserc` points only here. Firestore (us-central1) + rules/indexes deployed, Google sign-in on, Blaze plan. The Secretary's account has `assigner` + `official` roles in `orgs/dsrrs/members`.
+- **Sheet sync works:** test sheet "DSRRS matchReadyDS Schedule (test)" (tabs Schedule, Contacts, Locations, How to use; warn-only data validation). Service account `sheet-sync@dsrrs-matchready-test.iam.gserviceaccount.com` has Editor access; its key is the `GOOGLE_SERVICE_ACCOUNT_JSON` secret. Eight sheet functions deployed (syncSheet, sheetPoll, updateMatchSchedule, proposalWriteback, createMatch, approveFixtureRequest, submitTeamLinkRequests, reviewTeamLinkRequest). First sync succeeded.
+- **Functions params:** `functions/.env.dsrrs-matchready-test` (gitignored, local only) sets `DEFAULT_ORG_ID=dsrrs`, `APP_ORIGIN=http://localhost:5173`, and email defaults.
+
+### Not done yet
+- **Competitions:** need the exact True South names. There is no in-app editor; set `competitions` on `orgs/dsrrs` in Firestore, and add a matching dropdown to the sheet's `competition` column.
+- **Fees:** enter in Scheduler → Schedule → Crew defaults. Check whether the app supports the $200-per-team maximum.
+- **Fill Locations and Contacts** in the sheet for the 3–5 pilot clubs.
+- **Email:** `RESEND_API_KEY` and `AERODATABOX_API_KEY` are placeholder secrets; email functions are not deployed. Needs a society Resend account (`docs/EMAIL.md`).
+- **Sheet webhook** (auto-sync on edit) not set up; `SHEET_WEBHOOK_SECRET` exists but the Apps Script and `sheetWebhook` function are not deployed. Sync with the Upload button or the daily `sheetPoll`.
+- **Hosting:** app not published; runs on localhost only.
+- **Ownership:** Firebase project, test sheet and GitHub repo are under the Secretary's personal accounts. Add deepsouthrugbyreferees@gmail.com as owner before the pilot.
+
+### Gotchas found
+- The README's "Scheduler → Org" screen no longer exists: fees are under Schedule → Crew defaults, Sheet ID/sync under Upload.
+- `firebase deploy --only functions:…` still requires **every** secret and param the codebase defines, even for functions not being deployed.
+- A kickoff typed as `1100` (no colon) syncs as midnight. Use `11:00 AM`.
+- The local dev server stops whenever the Claude desktop app restarts; run `npm run dev` from VS Code's terminal to keep it up.
