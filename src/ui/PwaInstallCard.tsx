@@ -1,6 +1,6 @@
 import { Button } from '@patternfly/react-core';
 import { usePwaInstall } from '@/pwa/usePwaInstall';
-import { APP_NAME } from '@/config/brand';
+import { APP_NAME, brandIconPath } from '@/config/brand';
 
 type PwaInstallCardProps = {
   /** Extra class on the outer card (e.g. login spacing). */
@@ -22,7 +22,7 @@ export function PwaInstallCard({ className }: PwaInstallCardProps) {
     >
       <img
         className="rs-pwa-install__icon"
-        src="/pwa-192.png"
+        src={brandIconPath('pwa-192.png')}
         alt=""
         width={40}
         height={40}

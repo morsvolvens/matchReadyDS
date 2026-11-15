@@ -5,8 +5,26 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(({ mode }) => {
   // Society branding (VITE_APP_NAME in .env.local); defaults to upstream name.
-  const appName =
-    loadEnv(mode, process.cwd(), 'VITE_').VITE_APP_NAME?.trim() || 'MatchReadyTX';
+  const env = loadEnv(mode, process.cwd(), 'VITE_');
+  const appName = env.VITE_APP_NAME?.trim() || 'MatchReadyTX';
+  // Society icon folder under public/ (VITE_BRAND_ICON_DIR, e.g. /brand/dsrrs).
+  const iconDir = (env.VITE_BRAND_ICON_DIR?.trim() ?? '').replace(/\/+$/, '');
+  const manifestIcon = (file: string) =>
+    iconDir ? `${iconDir.replace(/^\/+/, '')}/${file}` : file;
+
+  const brandIndexHtml = (html: string) => {
+    let out = html.replaceAll('MatchReadyTX', appName);
+    if (iconDir) {
+      out = out
+        // Upstream SVG favicon is the MatchReadyTX mark; drop it for society icons.
+        .replace(/\s*<link rel="icon" type="image\/svg\+xml" href="\/icon\.svg" \/>/, '')
+        .replace(
+          /href="\/(favicon-32\.png|pwa-192\.png|apple-touch-icon\.png)"/g,
+          `href="${iconDir}/$1"`,
+        );
+    }
+    return out;
+  };
 
   return {
   server: {
@@ -17,8 +35,7 @@ export default defineConfig(({ mode }) => {
     react(),
     {
       name: 'brand-index-html',
-      transformIndexHtml: (html: string) =>
-        html.replaceAll('MatchReadyTX', appName),
+      transformIndexHtml: brandIndexHtml,
     },
     VitePWA({
       registerType: 'prompt',
@@ -45,19 +62,19 @@ export default defineConfig(({ mode }) => {
         // Icons must be white mark on opaque black (not transparent).
         icons: [
           {
-            src: 'pwa-192.png',
+            src: manifestIcon('pwa-192.png'),
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any',
           },
           {
-            src: 'pwa-512.png',
+            src: manifestIcon('pwa-512.png'),
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any',
           },
           {
-            src: 'pwa-512-maskable.png',
+            src: manifestIcon('pwa-512-maskable.png'),
             sizes: '512x512',
             type: 'image/png',
             purpose: 'maskable',

@@ -1,3 +1,5 @@
+import { BRAND_LOGO_SRC } from '@/config/brand';
+
 type Props = {
   className?: string;
   width?: number;
@@ -30,12 +32,16 @@ export function BrandLogo({
     >
       <img
         className={classes}
-        src="/matchReadyLogoWHITE.png"
+        src={BRAND_LOGO_SRC ?? '/matchReadyLogoWHITE.png'}
         alt={alt}
         width={width}
         height={height}
         decoding="async"
-        style={isMastheadSize ? undefined : { width: '100%', height: 'auto' }}
+        style={{
+          ...(isMastheadSize ? {} : { width: '100%', height: 'auto' }),
+          // A full-color society logo must not get the light-mode black-out filter.
+          ...(BRAND_LOGO_SRC ? { filter: 'none' } : {}),
+        }}
       />
     </span>
   );

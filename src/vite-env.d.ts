@@ -23,6 +23,7 @@ interface ImportMetaEnv {
   readonly VITE_APP_BUILD?: string;
   readonly VITE_APP_NAME?: string;
   readonly VITE_PUBLIC_CONTACT_EMAIL?: string;
+  readonly VITE_BRAND_ICON_DIR?: string;
 }
 
 interface ImportMeta {
